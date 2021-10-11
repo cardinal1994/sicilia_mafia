@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: _themes.setLightTheme(),
+      theme: _themes.setDarkTheme(),
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         LocDelegate(),
         GlobalMaterialLocalizations.delegate,
