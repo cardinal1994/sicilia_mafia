@@ -9,11 +9,16 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final List<User> users = <User>[
-    User(nickname: 'Vasya', balance: 150),
-    User(nickname: 'Patya', balance: 150),
-    User(nickname: 'Patya', balance: 150),
-    User(nickname: 'Patya', balance: 150),
-    User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Vasya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Vasya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
+    const User(nickname: 'Patya', balance: 150),
   ];
 
   @override
