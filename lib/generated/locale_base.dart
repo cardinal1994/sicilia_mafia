@@ -26,15 +26,18 @@ class LocaleBase {
 }
 
 class LocaleMain {
-  late final Map<String, String> _data;
   LocaleMain(this._data);
+  late final Map<String, String> _data;
+
 
   String getByKey(String key) {
     return _data[key]!;
   }
 
-  String get players => _data["players"]!;
-  String get loginAsAdministrator => _data["loginAsAdministrator"]!;
-  String get password => _data["password"]!;
+  String get players => _data['players']!;
+  String get loginAsAdministrator => _data['loginAsAdministrator']!;
+  String get password => _data['password']!;
+  String get somethingWrong => _data['somethingWrong']!;
+  String get search => _data['search']!;
 }
 

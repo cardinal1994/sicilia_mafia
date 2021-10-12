@@ -6,23 +6,26 @@ class LoginTextField extends StatelessWidget {
   const LoginTextField({
     int maxLines = 1,
     int maxLength = 35,
-    required TextEditingController controller,
-    required Function(String) onSubmitted,
-    required FocusNode focusNode,
+    TextEditingController? controller,
+    Function(String)? onSubmitted,
+    Function(String)? onChanged,
+    FocusNode? focusNode,
     String hintText = Strings.EMPTY,
   })  : _maxLines = maxLines,
         _maxLength = maxLength,
         _controller = controller,
         _onSubmitted = onSubmitted,
         _focusNode = focusNode,
+        _onChanged = onChanged,
         _hintText = hintText;
 
   final int _maxLines;
   final int _maxLength;
-  final Function(String) _onSubmitted;
-  final TextEditingController _controller;
+  final Function(String)? _onSubmitted;
+  final TextEditingController? _controller;
   final String _hintText;
-  final FocusNode _focusNode;
+  final FocusNode? _focusNode;
+  final Function(String)? _onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,7 @@ class LoginTextField extends StatelessWidget {
         maxLength: _maxLength,
         controller: _controller,
         onSubmitted: _onSubmitted,
+        onChanged: _onChanged,
         focusNode: _focusNode,
         style: Theme.of(context).textTheme.bodyText1,
         decoration: InputDecoration(

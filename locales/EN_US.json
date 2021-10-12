@@ -2,6 +2,8 @@
   "main": {
     "players": "Players",
     "loginAsAdministrator": "Login as Administrator",
-    "password": "Password"
+    "password": "Password",
+    "somethingWrong": "Ooops... Something wrong",
+    "search": "Search..."
   }
 }
