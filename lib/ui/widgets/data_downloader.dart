@@ -23,7 +23,7 @@ class DataDownloader extends StatelessWidget {
       BlocProvider<PlayersCubit>(
           create: (BuildContext context) => PlayersCubit(_auth, _store)),
       BlocProvider<AuthCubit>(
-          create: (BuildContext context) => AuthCubit(_auth)),
+          create: (BuildContext context) => AuthCubit(_auth)..initialize()),
     ], child: child);
   }
 }

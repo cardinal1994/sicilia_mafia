@@ -10,6 +10,7 @@ abstract class Player with _$Player {
     required int balance,
     required String clubMember,
     required int starCounter,
+    String? imageUrl,
   }) = _Player;
 
   factory Player.fromJson(Map<String, dynamic> json) =>

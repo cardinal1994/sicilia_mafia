@@ -107,57 +107,62 @@ class LoginAdministrator extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 if (state.loading) const CustomProgressIndicator(),
-                Center(
-                  child: Container(
-                    padding: CustomInsets.HORIZONTAL_20P_VERTICAL_10P,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        _separators.height20(),
-                        LoginTextField(
-                          controller: _loginController,
-                          hintText: Strings.EMAIL,
-                          focusNode: _loginFocusNode,
-                          onSubmitted: (String value) {
-                            FocusScope.of(context)
-                                .requestFocus(_passwordFocusNode);
-                          },
-                        ),
-                        _separators.height20(),
-                        LoginTextField(
-                          controller: _passwordController,
-                          hintText: loc.main.password,
-                          focusNode: _passwordFocusNode,
-                          onSubmitted: (String value) async {
-                            await context.read<AuthCubit>().signIn(
-                                  email: _loginController.text,
-                                  password: _passwordController.text,
-                                );
-                          },
-                        ),
-                        _separators.height50(),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await context.read<AuthCubit>().signIn(
-                                  email: _loginController.text,
-                                  password: _passwordController.text,
-                                );
-                          },
-                          child: Container(
-                            padding: CustomInsets.VERTICAL_10P,
-                            width: MediaQuery.of(context).size.width,
-                            alignment: Alignment.center,
-                            child: Text(
-                              loc.main.loginAsAdministrator,
-                              style: Theme.of(context).textTheme.button,
+                if (!state.isUserAuthorized)
+                  Center(
+                    child: Container(
+                      padding: CustomInsets.HORIZONTAL_20P_VERTICAL_10P,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          _separators.height20(),
+                          LoginTextField(
+                            controller: _loginController,
+                            hintText: Strings.EMAIL,
+                            focusNode: _loginFocusNode,
+                            onSubmitted: (String value) {
+                              FocusScope.of(context)
+                                  .requestFocus(_passwordFocusNode);
+                            },
+                          ),
+                          _separators.height20(),
+                          LoginTextField(
+                            controller: _passwordController,
+                            hintText: loc.main.password,
+                            focusNode: _passwordFocusNode,
+                            onSubmitted: (String value) async {
+                              await context.read<AuthCubit>().signIn(
+                                    email: _loginController.text,
+                                    password: _passwordController.text,
+                                  );
+                            },
+                          ),
+                          _separators.height50(),
+                          ElevatedButton(
+                            onPressed: () async {
+                              await context.read<AuthCubit>().signIn(
+                                    email: _loginController.text,
+                                    password: _passwordController.text,
+                                  );
+                            },
+                            child: Container(
+                              padding: CustomInsets.VERTICAL_10P,
+                              width: MediaQuery.of(context).size.width,
+                              alignment: Alignment.center,
+                              child: Text(
+                                loc.main.loginAsAdministrator,
+                                style: Theme.of(context).textTheme.button,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                if (state.isUserAuthorized)
+                  Center(
+                    child: Text(loc.main.userAlreadyAuthorized),
+                  )
               ],
             ),
           ),

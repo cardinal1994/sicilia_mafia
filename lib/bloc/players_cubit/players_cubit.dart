@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sicilia_mafia/models/player.dart';
 import 'package:sicilia_mafia/resources/strings.dart';
@@ -20,9 +23,24 @@ class PlayersCubit extends Cubit<PlayersState> {
     required int balance,
     required String clubMember,
     required int starCounter,
+    File? image,
   }) async {
     try {
       emit(state.copyWith(loading: true));
+
+      late String _imageURL;
+
+      if (!state.isUserClubPlayer) {
+        final Reference ref = FirebaseStorage.instance
+            .ref()
+            .child('players_images')
+            .child('$clubMember-$nickname.jpg');
+
+        await ref.putFile(image!);
+
+        _imageURL = await ref.getDownloadURL();
+      }
+
       await store
           .collection(Strings.PLAYERS_FIRESTORE_COLLECTION)
           .doc()
@@ -31,6 +49,7 @@ class PlayersCubit extends Cubit<PlayersState> {
         Strings.BALANCE_KEY: balance,
         Strings.CLUB_MEMBER_KEY: clubMember,
         Strings.STAR_COUNTER_KEY: starCounter,
+        if (!state.isUserClubPlayer) Strings.IMAGE_URL_KEY: _imageURL,
       });
       emit(state.copyWith(loading: false));
     } on Exception catch (e) {
@@ -63,8 +82,13 @@ class PlayersCubit extends Cubit<PlayersState> {
     } else {
       emit(state.copyWith(
           searchUsers: state.users!
-              .where((Player element) => element.nickname.toLowerCase().contains(value))
+              .where((Player element) =>
+                  element.nickname.toLowerCase().contains(value))
               .toList()));
     }
+  }
+
+  Future<void> changeSelectedClubRole({required String newRole}) async {
+    emit(state.copyWith(selectedClubRole: newRole));
   }
 }

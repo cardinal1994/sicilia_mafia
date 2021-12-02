@@ -39,5 +39,15 @@ class LocaleMain {
   String get password => _data['password']!;
   String get somethingWrong => _data['somethingWrong']!;
   String get search => _data['search']!;
+  String get userAlreadyAuthorized => _data['userAlreadyAuthorized']!;
+  String get balance => _data['balance']!;
+  String get nickname => _data['nickname']!;
+  String get clubRole => _data['clubRole']!;
+  String get createPlayer => _data['createPlayer']!;
+  String get cropYourImage => _data['cropYourImage']!;
+  String get uploadImage => _data['uploadImage']!;
+  String get imageUploaded => _data['imageUploaded']!;
+  String get cancel => _data['cancel']!;
+  String get add => _data['add']!;
 }
 

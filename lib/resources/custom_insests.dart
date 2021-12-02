@@ -4,8 +4,13 @@ import 'custom_dimensions.dart';
 
 class CustomInsets {
 
-  /// Horizontal
+  /// Right
 
+  static const EdgeInsets RIGHT_100P = EdgeInsets.only(
+    right: CustomDimensions.DIMEN100,
+  );
+
+  /// Horizontal
 
   static const EdgeInsets HORIZONTAL_15P = EdgeInsets.symmetric(
     horizontal: CustomDimensions.DIMEN15,

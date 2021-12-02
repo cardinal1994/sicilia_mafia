@@ -4,6 +4,16 @@
     "loginAsAdministrator": "Login as Administrator",
     "password": "Password",
     "somethingWrong": "Ooops... Something wrong",
-    "search": "Search..."
+    "search": "Search...",
+    "userAlreadyAuthorized": "User already authorized",
+    "nickname": "Nickname",
+    "balance": "Balance",
+    "clubRole": "Club Role",
+    "createPlayer": "Create player",
+    "cropYourImage": "Crop your image",
+    "uploadImage": "Upload image",
+    "imageUploaded": "Image uploaded",
+    "cancel": "Cancel",
+    "add": "Add"
   }
 }

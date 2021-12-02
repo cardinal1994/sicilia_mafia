@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sicilia_mafia/bloc/auth_cubit/auth_cubit.dart';
 import 'package:sicilia_mafia/bloc/players_cubit/players_cubit.dart';
 import 'package:sicilia_mafia/generated/locale_base.dart';
 import 'package:sicilia_mafia/resources/custom_insests.dart';
 import 'package:sicilia_mafia/resources/routes.dart';
+import 'package:sicilia_mafia/ui/widgets/add_user_form.dart';
 import 'package:sicilia_mafia/ui/widgets/custom_divider.dart';
 import 'package:sicilia_mafia/ui/widgets/custom_progress_indicator.dart';
+import 'package:sicilia_mafia/ui/widgets/dialog_body.dart';
 import 'package:sicilia_mafia/ui/widgets/login_text_field.dart';
 import 'package:sicilia_mafia/ui/widgets/separators.dart';
 
@@ -59,6 +62,28 @@ class HomePage extends StatelessWidget {
               ),
             ),
             actions: <Widget>[
+              if (BlocProvider.of<AuthCubit>(context).state.isUserAuthorized)
+                IconButton(
+                  onPressed: () {
+                    showDialog<Widget>(
+                        barrierColor: Colors.transparent,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return DialogBody(
+                              child: AddUserForm(
+                                  separators: _separators, loc: loc));
+                        });
+                  },
+                  icon: const Icon(
+                    Icons.add,
+                  ),
+                ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.settings,
+                ),
+              ),
               IconButton(
                 onPressed: () {
                   Navigator.of(context)
@@ -103,7 +128,8 @@ class HomePage extends StatelessWidget {
                                 : state.searchUsers!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                padding: CustomInsets.HORIZONTAL_20P_VERTICAL_10P,
+                                padding:
+                                    CustomInsets.HORIZONTAL_20P_VERTICAL_10P,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -137,8 +163,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-              if (state.loading)
-                const CustomProgressIndicator(),
+              if (state.loading) const CustomProgressIndicator(),
             ],
           ),
         );
@@ -146,5 +171,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-

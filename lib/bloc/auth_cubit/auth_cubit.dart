@@ -12,6 +12,17 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.auth) : super(const AuthState());
 
   final FirebaseAuth auth;
+  late SharedPreferences _preferences;
+
+  Future<void> initialize() async {
+    _preferences = await SharedPreferences.getInstance();
+    if (_preferences.getString(Strings.SHARED_PREFERENCES_UID_KEY) == null ||
+        _preferences.getString(Strings.SHARED_PREFERENCES_UID_KEY)!.isEmpty) {
+      emit(state.copyWith(isUserAuthorized: false));
+    } else {
+      emit(state.copyWith(isUserAuthorized: true));
+    }
+  }
 
   /*Future<void> signUp({required String email, required String password}) async {
     emit(state.copyWith(loading: true));

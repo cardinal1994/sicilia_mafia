@@ -4,6 +4,16 @@
     "loginAsAdministrator": " ",
     "password": " ",
     "somethingWrong": "",
-    "search": " "
+    "search": " ",
+    "userAlreadyAuthorized": " ",
+    "nickname": " ",
+    "balance": " ",
+    "clubRole": " ",
+    "createPlayer": " ",
+    "cropYourImage": " ",
+    "uploadImage": " ",
+    "imageUploaded": " ",
+    "cancel": " ",
+    "add": " "
   }
 }
